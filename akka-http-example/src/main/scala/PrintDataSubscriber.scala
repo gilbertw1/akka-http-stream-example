@@ -18,7 +18,7 @@ import ActorSubscriberMessage._
 
 class PrintDataSubscriber(delay: Long) extends ActorSubscriber with ActorLogging {
   log.info("Data Chunk Stream Subscription Started")
-  def requestStrategy = WatermarkRequestStrategy(50)
+  val requestStrategy = WatermarkRequestStrategy(50)
 
   def receive = {
     case OnNext(chunk: ChunkStreamPart) => 

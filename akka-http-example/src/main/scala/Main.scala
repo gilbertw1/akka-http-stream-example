@@ -35,7 +35,6 @@ object MainFunctions {
   def startStreamServerWithPublisher(publisher: Publisher[ChunkStreamPart], port: Int)(implicit system: ActorSystem, materializer: FlowMaterializer) = {
     HttpServer.bindServer(port) {
       case HttpRequest(GET, Uri.Path("/"), _, _, _) => 
-        println("Stream Endpoint")
         HttpResponse (
           entity = new Chunked(MediaTypes.`text/plain`, publisher)
         )

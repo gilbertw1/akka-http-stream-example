@@ -43,8 +43,16 @@ object AkkaHttpStreamExample extends Build {
   import BuildSettings._
   import Defaults._
 
-  lazy val akkaHttpStreamExample = 
-    Project ("akka-http-stream-example", file("."))
+  lazy val akkaHttpStreamExample =
+    Project ("akka-http-example", file("./akka-http-example"))
+      .settings ( buildSettings : _* )
+      .settings ( SbtOneJar.oneJarSettings : _* )
+      .settings ( resolvers ++= Seq(typesafeRepo) )
+      .settings ( libraryDependencies ++= Dependencies.allDependencies )
+      .settings ( scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature") )
+
+  lazy val akkaStreamExample =
+    Project ("akka-stream-example", file("./akka-stream-example"))
       .settings ( buildSettings : _* )
       .settings ( SbtOneJar.oneJarSettings : _* )
       .settings ( resolvers ++= Seq(typesafeRepo) )
