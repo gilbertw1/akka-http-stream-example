@@ -16,7 +16,7 @@ import MainFunctions._
 object Main extends App {
   
   implicit val system = ActorSystem()
-  implicit val materializer = FlowMaterializer(MaterializerSettings())
+  implicit val materializer = FlowMaterializer(MaterializerSettings(system))
   val config = ConfigFactory.parseFile(new File(args(0)))
 
   val publisher: Publisher[ChunkStreamPart] = config.getString("example.publisher") match {

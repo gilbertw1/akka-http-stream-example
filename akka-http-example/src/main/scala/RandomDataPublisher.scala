@@ -31,8 +31,8 @@ class RandomDataPublisher extends ActorPublisher[ChunkStreamPart] with ActorLogg
     case _ =>
   }
 
-  def sendDataChunks(cnt: Int) {  
-    for(i <- 1 to cnt) {
+  def sendDataChunks(cnt: Long) {  
+    for(i <- 1L to cnt) {
       if(isActive && totalDemand > 0) {
         count += 1
         println(s"Sending Data! ($count)")

@@ -36,10 +36,10 @@ import ActorPublisherMessage._
 class DataChunkProcessor extends ActorSubscriber with ActorPublisher[ChunkStreamPart] with ActorLogging {
   log.info("Data Chunk Stream Subscription Started")
   val queue = MQueue[ByteString]()
-  var requested = 0
+  var requested = 0L
 
   def receive = {
-    case Request(cnt: Int) => requested += cnt; sendDataChunks()
+    case Request(cnt) => requested += cnt; sendDataChunks()
     case Cancel => onComplete(); context.stop(self)
     case OnNext(bytes: ByteString) => queue.enqueue(bytes); sendDataChunks()
     case OnComplete => onComplete()

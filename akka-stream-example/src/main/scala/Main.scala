@@ -51,7 +51,7 @@ object Examples {
 
   def startFlowExample(implicit system: ActorSystem) {
     import system.dispatcher
-    implicit val materializer = FlowMaterializer(MaterializerSettings())
+    implicit val materializer = FlowMaterializer(MaterializerSettings(system))
 
     val publisherActor = system.actorOf(Props[FibonacciPublisher])
     val publisher = ActorPublisher[BigInteger](publisherActor)
