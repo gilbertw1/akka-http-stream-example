@@ -5,6 +5,7 @@ import akka.util.ByteString
 import akka.actor.{ActorSystem,ActorRefFactory}
 import akka.stream.actor.{ActorPublisher}
 import akka.stream.{MaterializerSettings,FlowMaterializer}
+import akka.stream.scaladsl2.Source
 import akka.http.model._
 import com.typesafe.config._
 import org.reactivestreams.{Publisher,Subscriber}
@@ -36,7 +37,7 @@ object MainFunctions {
     HttpServer.bindServer(port) {
       case HttpRequest(GET, Uri.Path("/"), _, _, _) => 
         HttpResponse (
-          entity = new Chunked(MediaTypes.`text/plain`, publisher)
+          entity = new Chunked(MediaTypes.`text/plain`, Source(publisher))
         )
       case _: HttpRequest => HttpResponse(404, entity = "Unknown resource!")
     }

@@ -8,6 +8,7 @@ import scala.async.Async.{async, await}
 import akka.util.{ByteString}
 import akka.actor.{ActorSystem,ActorLogging,Props}
 import akka.stream.{FlowMaterializer,MaterializerSettings}
+import akka.stream.scaladsl2.Sink
 import akka.stream.actor._
 import akka.http.model.HttpEntity
 import org.reactivestreams.Publisher
@@ -23,7 +24,7 @@ object StreamClientPublisher {
       val processor = system.actorOf(Props[DataChunkProcessor])
       val processorSubscriber = ActorSubscriber[ByteString](processor)
       val processorPublisher = ActorPublisher[ChunkStreamPart](processor)
-      response.entity.dataBytes(materializer).subscribe(processorSubscriber)
+      response.entity.dataBytes.connect(Sink(processorSubscriber))
       processorPublisher
     }
     Await.result(publisherFuture, 1.seconds)
