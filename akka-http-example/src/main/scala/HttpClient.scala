@@ -25,8 +25,8 @@ object HttpClient {
       val connFuture = IO(Http).ask(Http.Connect("127.0.0.1", port)).mapTo[Http.OutgoingConnection]
       val connection = await(connFuture)
       val request = HttpRequest(HttpMethods.GET, Uri(path))
-      Flow(List(request -> 'NoContext)).produceTo(connection.processor)
-      await(Flow(connection.processor).map(_._1).toFuture)
+      Flow(List(request -> 'NoContext)).produceTo(connection.requestSubscriber)
+      await(Flow(connection.responsePublisher).map(_._1).toFuture)
     }
   }
 }
