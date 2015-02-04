@@ -19,16 +19,16 @@ object Resolvers {
 }
 
 object Dependencies {
-  val akkaVersion = "2.3.6"
+  val akkaVersion = "2.3.9"
 
   val akkaActor = "com.typesafe.akka" %% "akka-actor" % akkaVersion
   val akkaSlf4j = "com.typesafe.akka" %% "akka-slf4j" % akkaVersion
   val akkaTestkit = "com.typesafe.akka" %% "akka-testkit" % akkaVersion
 
-  val akkaHttp = "com.typesafe.akka" %% "akka-http-core-experimental" % "0.7"
-  val akkaStream ="com.typesafe.akka" %% "akka-stream-experimental" % "0.7"
+  val akkaHttp = "com.typesafe.akka" %% "akka-http-core-experimental" % "1.0-M2"
+  val akkaStream = "com.typesafe.akka" %% "akka-stream-experimental" % "1.0-M2"
 
-  val playJson = "com.typesafe.play" %% "play-json" % "2.3.2"
+  val playJson = "com.typesafe.play" %% "play-json" % "2.3.7"
   val scalatest = "org.scalatest" %% "scalatest" % "2.2.0" % "test"
   val scalaAsync = "org.scala-lang.modules" %% "scala-async" % "0.9.2"
 
