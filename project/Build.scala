@@ -5,7 +5,7 @@ import com.github.retronym.SbtOneJar
 object BuildSettings {
   val buildOrganization = "bryan.codes"
   val buildVersion      = "0.1"
-  val buildScalaVersion = "2.11.2"
+  val buildScalaVersion = "2.11.5"
 
   val buildSettings = Defaults.defaultSettings ++ Seq (
     organization := buildOrganization,
@@ -25,12 +25,12 @@ object Dependencies {
   val akkaSlf4j = "com.typesafe.akka" %% "akka-slf4j" % akkaVersion
   val akkaTestkit = "com.typesafe.akka" %% "akka-testkit" % akkaVersion
 
-  val akkaHttp = "com.typesafe.akka" %% "akka-http-core-experimental" % "1.0-M2"
-  val akkaStream = "com.typesafe.akka" %% "akka-stream-experimental" % "1.0-M2"
+  val akkaHttp = "com.typesafe.akka" %% "akka-http-core-experimental" % "1.0-M4"
+  val akkaStream = "com.typesafe.akka" %% "akka-stream-experimental" % "1.0-M4"
 
-  val playJson = "com.typesafe.play" %% "play-json" % "2.3.7"
-  val scalatest = "org.scalatest" %% "scalatest" % "2.2.0" % "test"
-  val scalaAsync = "org.scala-lang.modules" %% "scala-async" % "0.9.2"
+  val playJson = "com.typesafe.play" %% "play-json" % "2.3.8"
+  val scalatest = "org.scalatest" %% "scalatest" % "2.2.4" % "test"
+  val scalaAsync = "org.scala-lang.modules" %% "scala-async" % "0.9.3"
 
   val akkaDependencies = Seq(akkaActor, akkaSlf4j, akkaTestkit, akkaHttp, akkaStream)
   val miscDependencies = Seq(playJson, scalaAsync)
